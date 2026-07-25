@@ -8,10 +8,30 @@ basic.forever(function () {
     } else if (mode == 1) {
         let ax = input.acceleration(Dimension.X)
         let ay = input.acceleration(Dimension.Y)
-        let col = Math.map(ax, -1023, 1023, 0, 4)
-        col = Math.constrain(Math.round(col), 0, 4)
-        let row = Math.map(ay, -1023, 1023, 0, 4)
-        row = Math.constrain(Math.round(row), 0, 4)
+        let col = 2
+        let row = 2
+        if (ax < -550) {
+            col = 0
+        } else if (ax < -200) {
+            col = 1
+        } else if (ax < 200) {
+            col = 2
+        } else if (ax < 550) {
+            col = 3
+        } else {
+            col = 4
+        }
+        if (ay < -550) {
+            row = 0
+        } else if (ay < -200) {
+            row = 1
+        } else if (ay < 200) {
+            row = 2
+        } else if (ay < 550) {
+            row = 3
+        } else {
+            row = 4
+        }
         basic.clearScreen()
         led.plot(col, row)
         if (col == 2 && row == 2) {
